@@ -116,6 +116,15 @@ void MainWindow::on_loadcasters_clicked()
 
 /********************************************************************************/
 /*  */
+/* My home GGA:
+ *
+ * $GPGGA,171220.491,3719.323,N,12651.471,E,1,12,1.0,0.0,M,0.0,M,,*68
+ * $GPGGA,171218.491,3719.323,N,12651.474,E,1,12,1.0,0.0,M,0.0,M,,*66
+ * $GPGGA,171219.491,3719.320,N,12651.472,E,1,12,1.0,0.0,M,0.0,M,,*62
+ * $GPGGA,171220.491,3719.323,N,12651.471,E,1,12,1.0,0.0,M,0.0,M,,*68
+ *
+*/
+
 /********************************************************************************/
 void MainWindow::on_requestrtk_clicked()
 {
@@ -125,7 +134,7 @@ void MainWindow::on_requestrtk_clicked()
         if(casterid>=0)
         {
             ui->mntpnt->setText(ntrip.casterlist[casterid].mountpoint);
-            ntrip.startReceiveRtk(casterid,ui->GPGGA->text());
+            ntrip.startReceiveRtk(casterid, ui->GPGGA->text());
             ui->requestrtk->setText("Stop RTK");
         }
     }

@@ -324,7 +324,7 @@
       <item>
        <widget class="QLineEdit" name="GPGGA">
         <property name="text">
-         <string>$GPGGA,000637.10,4026.4183386,N,07956.1275614,W,5,06,1.0,308.021,M,-34.121,M,1.1,*7C</string>
+         <string>$GPGGA,171220.491,3719.323,N,12651.471,E,1,12,1.0,0.0,M,0.0,M,,*68</string>
         </property>
        </widget>
       </item>

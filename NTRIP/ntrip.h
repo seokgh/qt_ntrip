@@ -9,6 +9,8 @@
 #include <QString>
 #include <QThread>
 #include <QMutex>
+#include <QTime>
+#include <QDebug>
 
 struct NtripCasterStr
 {
