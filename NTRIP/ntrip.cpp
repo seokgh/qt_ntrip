@@ -195,7 +195,7 @@ void Ntrip::slotRequestRtk(int casterId, QString GPGGA)
     QString userpwd=QString("%1:%2").arg(user).arg(passwd);
     QString base64=userpwd.toUtf8().toBase64();
     QString message=QString("GET %1/%2 HTTP/1.1\r\n"
-                            "Host: 209.255.196.164\r\n"
+                            "Host: rts2.ngii.go.kr\r\n"
                             "Ntrip-Version: Ntrip/2.0\r\n"
                             "User-Agent: NTRIP %3\r\n"
                             "Authorization: Basic %4\r\n"
@@ -203,7 +203,7 @@ void Ntrip::slotRequestRtk(int casterId, QString GPGGA)
                             "\r\n"
                             "%5\r\n"
                             )
-            .arg("").arg(casterlist[casterId].mountpoint).arg("CMU-CORAL").arg(base64).arg(GPGGA);
+            .arg("").arg(casterlist[casterId].mountpoint).arg("Gwangho.Seok").arg(base64).arg(GPGGA);
     this->write(message.toUtf8());
 
     while(checkReceiveFlag()&&this->waitForReadyRead(NTRIPWAIT))

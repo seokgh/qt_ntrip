@@ -49,7 +49,7 @@
           <item>
            <widget class="QLineEdit" name="addr">
             <property name="text">
-             <string>209.255.196.164</string>
+             <string>rts2.ngii.go.kr</string>
             </property>
            </widget>
           </item>
@@ -97,7 +97,7 @@
           <item>
            <widget class="QLineEdit" name="user">
             <property name="text">
-             <string>CMU</string>
+             <string>Seok</string>
             </property>
            </widget>
           </item>
@@ -111,7 +111,7 @@
           <item>
            <widget class="QLineEdit" name="pwd">
             <property name="text">
-             <string>PLI13</string>
+             <string>ngii</string>
             </property>
            </widget>
           </item>
