@@ -3,6 +3,9 @@
 
 #include <QInputDialog>
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -65,11 +68,17 @@ MainWindow::MainWindow(QWidget *parent) :
     //connect(interface,SIGNAL(signalClientIdConfirmed(QString)),this,SLOT(slotClientIdConfirmed(QString)));
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::on_decode_clicked()
 {
     ntrip.decodeNtripPath(ui->ntripaddr->text());
@@ -82,6 +91,9 @@ void MainWindow::on_decode_clicked()
     ui->ntripaddr->setText(ntrip.ntrippath);
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::on_encode_clicked()
 {
     ntrip.addr=ui->addr->text();
@@ -94,11 +106,17 @@ void MainWindow::on_encode_clicked()
     ui->ntripaddr->setText(ntrip.ntrippath);
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::on_loadcasters_clicked()
 {
     ntrip.loadCasterList();
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::on_requestrtk_clicked()
 {
     if(ui->requestrtk->text()==QString("Request RTK"))
@@ -118,17 +136,26 @@ void MainWindow::on_requestrtk_clicked()
     }
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::on_clear_clicked()
 {
     ui->rawshow->clear();
     ui->rtcminfo->clear();
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::on_loadports_clicked()
 {
     venus8.loadPortList();
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::on_startvenus8_clicked()
 {
     if(ui->startvenus8->text()==QString("Start Venus8"))
@@ -148,17 +175,26 @@ void MainWindow::on_startvenus8_clicked()
     }
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::on_clearnmea_clicked()
 {
     ui->nmea->clear();
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::on_sendmessage_clicked()
 {
     QByteArray hexMessage=ui->message->text().toUtf8();
     venus8.sendMessage(hexMessage);
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotCasterListLoaded()
 {
     ui->casters->clearContents();
@@ -189,6 +225,9 @@ void MainWindow::slotCasterListLoaded()
 }
 
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotRtkReceived(QByteArray rtk)
 {
     QString content=QString("[%1]\n%2")
@@ -197,12 +236,18 @@ void MainWindow::slotRtkReceived(QByteArray rtk)
     ui->rawshow->append(content);
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotRtkEnd()
 {
     ntrip.stopReceiveRtk();
     ui->requestrtk->setText("Request RTK");
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotPortListLoaded()
 {
     ui->portlist->clearContents();
@@ -218,6 +263,9 @@ void MainWindow::slotPortListLoaded()
     }
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotNmeaReceived(QByteArray nmea)
 {
     QString content=QString("[%1]\n%2")
@@ -226,6 +274,9 @@ void MainWindow::slotNmeaReceived(QByteArray nmea)
     ui->nmea->append(content);
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotNmeaParsed(nmeaINFO info)
 {
     QString content=QString("smask:\t%1\n"
@@ -281,6 +332,9 @@ void MainWindow::slotNmeaParsed(nmeaINFO info)
     //interface->setMarker(marker,markerconfig,"");
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotVenus8Stopped()
 {
     venus8.stopReceiveNmea();
@@ -288,22 +342,34 @@ void MainWindow::slotVenus8Stopped()
     ui->startvenus8->setText("Start Venus8");
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotVenus8ConnectionError()
 {
     ui->nmea->append("Venus8 Connection Error!");
     ui->startvenus8->setText("Start Venus8");
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotMessageSent()
 {
     ui->messageshow->append("Venus8 Message Sent");
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotMessageNotSent()
 {
     ui->messageshow->append("Venus8 Message Not Sent");
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotMessageReceived(QByteArray message)
 {
     ui->messageshow->append(message.toHex());
@@ -314,6 +380,9 @@ void MainWindow::slotLogFilenameSet()
     ui->logfile->setText(logger.filename);
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotRtcmGpsData(RtcmGPSData gpsData)
 {
     QString content=QString("type:\t%1\n"
@@ -344,6 +413,9 @@ void MainWindow::slotRtcmGpsData(RtcmGPSData gpsData)
     ui->rtcminfo->append(content);
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotRtcmStationaryAntennaData(RtcmStationaryAntennaData stationaryAntennaData)
 {
     QString content=QString("type:\t%1\n"
@@ -357,6 +429,9 @@ void MainWindow::slotRtcmStationaryAntennaData(RtcmStationaryAntennaData station
     ui->rtcminfo->append(content);
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotRtcmAntennaDescriptor(RtcmAntennaDescriptor antennaDescriptor)
 {
     QString content=QString("type:\t%1\n"
@@ -368,6 +443,9 @@ void MainWindow::slotRtcmAntennaDescriptor(RtcmAntennaDescriptor antennaDescript
     ui->rtcminfo->append(content);
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotRtcmReceiverAntennaDescriptor(RtcmReceiverAntennaDescriptor receiverAntennaDescriptor)
 {
     QString content=QString("type:\t%1\n"
@@ -389,11 +467,17 @@ void MainWindow::slotRtcmReceiverAntennaDescriptor(RtcmReceiverAntennaDescriptor
     ui->rtcminfo->append(content);
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::on_setlogfile_clicked()
 {
     logger.setLogFilename();
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::on_startlog_clicked()
 {
     if(ui->startlog->text()==QString("Start"))
@@ -408,6 +492,9 @@ void MainWindow::on_startlog_clicked()
     }
 }
 
+/********************************************************************************/
+/*  */
+/********************************************************************************/
 void MainWindow::slotClientIdConfirmed(QString clientId)
 {
     //interface->setMarker(marker,markerconfig,clientId);
