@@ -8,6 +8,7 @@
 #include "rtcm.h"
 //#include <qgmapinterface.h>
 #include <QNetworkInterface>
+#include <QDebug>
 
 namespace Ui {
 class MainWindow;

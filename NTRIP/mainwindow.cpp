@@ -39,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&ntrip,SIGNAL(signalCasterListLoaded()),this,SLOT(slotCasterListLoaded()));
     connect(&ntrip,SIGNAL(signalRtkReceived(QByteArray)),this,SLOT(slotRtkReceived(QByteArray)));
     connect(&ntrip,SIGNAL(signalRtkEnd()),this,SLOT(slotRtkEnd()));
-    connect(&ntrip,SIGNAL(signalRtkReceived(QByteArray)),&rtcm,SLOT(slotDecodeRtcm(QByteArray)));
+    //connect(&ntrip,SIGNAL(signalRtkReceived(QByteArray)),&rtcm,SLOT(slotDecodeRtcm(QByteArray)));
 
     connect(&venus8,SIGNAL(signalPortListLoaded()),this,SLOT(slotPortListLoaded()));
     connect(&venus8,SIGNAL(signalNmeaReceived(QByteArray)),this,SLOT(slotNmeaReceived(QByteArray)));
@@ -239,6 +239,9 @@ void MainWindow::slotCasterListLoaded()
 /********************************************************************************/
 void MainWindow::slotRtkReceived(QByteArray rtk)
 {
+    qDebug() << "RTCM MSG:\n" << rtk;
+    qDebug() << "-----------------------------------";
+
     QString content=QString("[%1]\n%2")
             .arg(QTime::currentTime().toString("HH:mm:ss:zzz"))
             .arg(ui->hex->isChecked()?QString(rtk.toHex()):QString(rtk));
